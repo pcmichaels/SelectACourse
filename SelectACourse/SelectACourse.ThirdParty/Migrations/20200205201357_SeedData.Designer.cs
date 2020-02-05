@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SelectACourse.ThirdParty.DataAccess;
 
 namespace SelectACourse.ThirdParty.Migrations
 {
     [DbContext(typeof(CourseSelectDbContext))]
-    partial class CourseSelectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200205201357_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
