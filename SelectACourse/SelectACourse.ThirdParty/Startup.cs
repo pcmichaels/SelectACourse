@@ -30,6 +30,8 @@ namespace SelectACourse.ThirdParty
             services.AddControllers();
             services.AddDbContext<CourseSelectDbContext>(a =>
                 a.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
+
+            services.AddTransient<DataAccessService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

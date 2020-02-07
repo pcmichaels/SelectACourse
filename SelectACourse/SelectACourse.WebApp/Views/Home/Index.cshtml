@@ -1,8 +1,45 @@
-﻿@{
+﻿@model HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Available Courses</h1>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sm table-striped table-hover border-bottom">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Tutor</th>
+                            <th>Cost</th>                            
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var course in Model.Courses)
+                        {
+                            <tr>
+                                <td>
+                                    @course.Date
+                                </td>
+                                <td>
+                                    @course.Title
+                                </td>
+                                <td>
+                                    @course.Tutor
+                                </td>
+                                <td>
+                                    @course.Cost
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

@@ -6,21 +6,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SelectACourse.WebApp.Models;
+using SelectACourse.WebApp.Services;
 
 namespace SelectACourse.WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ThirdPartyService _thirdPartyService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+            ThirdPartyService thirdPartyService)
         {
             _logger = logger;
+            _thirdPartyService = thirdPartyService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var viewModel = new HomeViewModel()
+            {
+                Courses = await _thirdPartyService.GetCourses()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
