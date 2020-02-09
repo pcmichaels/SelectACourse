@@ -20,9 +20,12 @@ namespace SelectACourse.ThirdParty.Controllers
         }
 
         [HttpPost]
-        public void Enrol(string courseId, string studentId)
+        public IActionResult Enrol([FromQuery]string courseId, [FromQuery]string studentId)
         {
-            _dataAccessService.Enrol(courseId, studentId);
+            if (_dataAccessService.Enrol(courseId, studentId))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [HttpGet]

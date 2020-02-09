@@ -1,0 +1,13 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Please enter your Student Id</h1>
+
+@using (Html.BeginForm("Login", "Login"))
+{
+    @Html.TextBoxFor(m => m.StudentId)
+
+    <input type="submit" />
+}

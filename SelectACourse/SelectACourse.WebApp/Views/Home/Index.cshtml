@@ -5,6 +5,10 @@
 }
 
     <div class="text-center">
+        <h1 class="display-4">Student: @Model.StudentId</h1>
+    </div>
+
+    <div class="text-center">
         <h1 class="display-4">Available Courses</h1>
 
         <div class="row">
@@ -15,30 +19,38 @@
                             <th>Date</th>
                             <th>Title</th>
                             <th>Tutor</th>
-                            <th>Cost</th>                            
+                            <th>Cost</th>    
+                            <th></th>
                         </tr>
 
                     </thead>
                     <tbody>
                         @foreach (var course in Model.Courses)
                         {
-                            <tr>
-                                <td>
-                                    @course.Date
-                                </td>
-                                <td>
-                                    @course.Title
-                                </td>
-                                <td>
-                                    @course.Tutor
-                                </td>
-                                <td>
-                                    @course.Cost
-                                </td>
-
-                            </tr>
-                        }
-                    </tbody>
+                            @using (Html.BeginForm("Enrol", "Home", 
+                                 new { courseId = course.Id, studentId = Model.StudentId }, FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <tr>
+                                    <td>
+                                        @course.Date
+                                    </td>
+                                    <td>
+                                        @course.Title
+                                    </td>
+                                    <td>
+                                        @course.Tutor
+                                    </td>
+                                    <td>
+                                        @course.Cost
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Enrol" />
+                                    </td>
+                                </tr>
+                                }
+                            }
+                        </tbody>
                 </table>
             </div>
         </div>

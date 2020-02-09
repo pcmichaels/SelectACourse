@@ -20,7 +20,7 @@ namespace SelectACourse.ThirdParty.DataAccess
             _courseSelectDbContext.EnrolmentEntities
                 .Where(a => a.StudentId == studentId);
 
-        internal void Enrol(string courseId, string studentId)
+        internal bool Enrol(string courseId, string studentId)
         {
             var enrolmentEntity = new EnrolmentEntity()
             {
@@ -28,7 +28,7 @@ namespace SelectACourse.ThirdParty.DataAccess
                 StudentId = studentId
             };
             _courseSelectDbContext.EnrolmentEntities.Add(enrolmentEntity);
-            _courseSelectDbContext.SaveChanges();
+            return (_courseSelectDbContext.SaveChanges() != 0);
 
         }
 

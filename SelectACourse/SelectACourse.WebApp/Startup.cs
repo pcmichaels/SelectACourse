@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SelectACourse.WebApp.Models;
 using SelectACourse.WebApp.Services;
 
 namespace SelectACourse.WebApp
@@ -27,6 +28,7 @@ namespace SelectACourse.WebApp
             services.AddControllersWithViews();
             services.AddHttpClient();
             services.AddTransient<ThirdPartyService>();
+            services.AddSingleton<StudentInfo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +55,7 @@ namespace SelectACourse.WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

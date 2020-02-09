@@ -34,5 +34,13 @@ namespace SelectACourse.WebApp.Services
             var courses = await JsonSerializer.DeserializeAsync<List<Course>>(responseStream, options);
             return courses;
         }
+
+        internal async Task Enrol(string studentId, string courseId)
+        {
+            var client = _httpClientFactory.CreateClient();
+
+            var result = await client.PostAsync($"https://localhost:44353/Enrolment?courseId={courseId}&studentId={studentId}", null);
+
+        }
     }
 }
