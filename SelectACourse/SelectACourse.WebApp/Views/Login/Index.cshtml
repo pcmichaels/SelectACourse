@@ -2,12 +2,22 @@
 @{
     ViewData["Title"] = "View";
 }
+    
+        <div class="row form-group" >
+            <h1>Please enter your Student Id</h1>
+        </div>
 
-<h1>Please enter your Student Id</h1>
+            @using (Html.BeginForm("Login", "Login"))
+            {
+                <div class="row form-group">
+                    <div class="col-4">
+                        @Html.TextBoxFor(m => m.StudentId, new { @class = "form-control" })
+                    </div>
+                </div>
 
-@using (Html.BeginForm("Login", "Login"))
-{
-    @Html.TextBoxFor(m => m.StudentId)
-
-    <input type="submit" />
-}
+                <div class="row form-group">
+                    <div class="col-4">
+                        <input type="submit" class="form-control btn-primary" />
+                    </div>
+                </div>
+            }
