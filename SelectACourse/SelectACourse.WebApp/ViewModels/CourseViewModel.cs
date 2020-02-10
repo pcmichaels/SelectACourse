@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SelectACourse.WebApp.ViewModels
 {
-    public class HomeViewModel
+    public class CourseViewModel
     {
-        public string StudentId { get; set; }
-        public IEnumerable<CourseViewModel> Courses { get; set; }
-
+        public Course Course { get; set; }
+        public int Enrolled { get; set; }
     }
 }

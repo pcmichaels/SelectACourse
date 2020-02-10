@@ -42,5 +42,14 @@ namespace SelectACourse.WebApp.Services
             var result = await client.PostAsync($"https://localhost:44353/Enrolment?courseId={courseId}&studentId={studentId}", null);
 
         }
+
+        internal async Task<int> GetNumberEnrolled(string courseId)
+        {
+            var client = _httpClientFactory.CreateClient();
+
+            var result = await client.GetAsync($"https://localhost:44353/Enrolment/GetEnrolmentsForCourse/{courseId}");
+            string enrolledCountString = await result.Content.ReadAsStringAsync();
+            return int.Parse(enrolledCountString);
+        }
     }
 }

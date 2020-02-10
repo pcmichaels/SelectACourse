@@ -31,6 +31,9 @@ namespace SelectACourse.ThirdParty.Controllers
         [HttpGet]
         public IEnumerable<Enrolment> GetEnrolments(string studentId) =>
             _dataAccessService.GetEnrolments(studentId);
-        
+
+        [HttpGet("[action]/{courseId}")] 
+        public int GetEnrolmentsForCourse(string courseId) =>        
+            _dataAccessService.GetEnrolmentCountForCourse(courseId);        
     }
 }

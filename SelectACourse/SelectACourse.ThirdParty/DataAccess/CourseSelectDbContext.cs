@@ -24,7 +24,8 @@ namespace SelectACourse.ThirdParty.DataAccess
                     Tutor = "David Price",
                     Title = "Geology for Beginers",
                     Date = new DateTime(2021, 04, 01),
-                    Cost = 20
+                    Cost = 20,
+                    Capacity = 8
                 },
                 new CourseEntity()
                 {
@@ -32,7 +33,8 @@ namespace SelectACourse.ThirdParty.DataAccess
                     Tutor = "Dr. Graham Sutherland",
                     Title = "Advanced Mathematics",
                     Date = new DateTime(2021, 08, 21),
-                    Cost = 120
+                    Cost = 120,
+                    Capacity = 12
                 },
                 new CourseEntity()
                 {
@@ -40,7 +42,8 @@ namespace SelectACourse.ThirdParty.DataAccess
                     Tutor = "Ronald Jones",
                     Title = "An Introduction to InfoSec",
                     Date = new DateTime(2020, 12, 01),
-                    Cost = 75.20m
+                    Cost = 75.20m,
+                    Capacity = 25
                 },
                 new CourseEntity()
                 {
@@ -48,8 +51,18 @@ namespace SelectACourse.ThirdParty.DataAccess
                     Tutor = "Dr. Stephanie Browne",
                     Title = "Advanced Material Physics",
                     Date = new DateTime(2021, 02, 7),
-                    Cost = 95
-                });            
+                    Cost = 95,
+                    Capacity = 20
+                },
+                new CourseEntity()
+                {
+                    Id = "5",
+                    Tutor = "Dr. Alison Kilmister",
+                    Title = "Sound Engineering",
+                    Date = new DateTime(2021, 01, 21),
+                    Cost = 160,
+                    Capacity = 12
+                });
         }
     }
 }

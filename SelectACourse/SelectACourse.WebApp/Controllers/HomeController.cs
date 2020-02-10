@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using SelectACourse.WebApp.ViewModels;
 using SelectACourse.WebApp.Services;
 using SelectACourse.WebApp.Models;
+using System.Linq;
 
 namespace SelectACourse.WebApp.Controllers
 {
@@ -24,9 +25,14 @@ namespace SelectACourse.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var courses = await _thirdPartyService.GetCourses();
             var viewModel = new HomeViewModel()
             {
-                Courses = await _thirdPartyService.GetCourses(),
+                Courses = await Task.WhenAll(courses.Select(async a => new CourseViewModel()
+                {
+                    Course = a,
+                    Enrolled = await _thirdPartyService.GetNumberEnrolled(a.Id)
+                })),
                 StudentId = _studentInfo.StudentId
             };
 
@@ -49,7 +55,7 @@ namespace SelectACourse.WebApp.Controllers
         {
             await _thirdPartyService.Enrol(homeViewModel.StudentId, courseId);
 
-            return Ok();
+            return RedirectToAction("Index");
         }
     }
 }

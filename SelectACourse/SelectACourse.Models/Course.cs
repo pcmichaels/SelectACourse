@@ -13,5 +13,7 @@ namespace SelectACourse.Models
         public string Title { get; set; }
 
         public decimal Cost { get; set; }
+
+        public int Capacity { get; set; }
     }
 }

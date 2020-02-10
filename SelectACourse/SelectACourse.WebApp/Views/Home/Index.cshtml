@@ -20,34 +20,38 @@
                             <th>Title</th>
                             <th>Tutor</th>
                             <th>Cost</th>    
+                            <th>Capacity</th>
                             <th></th>
                         </tr>
 
                     </thead>
                     <tbody>
-                        @foreach (var course in Model.Courses)
+                        @foreach (var courseViewModel in Model.Courses)
                         {
                             @using (Html.BeginForm("Enrol", "Home", 
-                                 new { courseId = course.Id, studentId = Model.StudentId }, FormMethod.Post))
+                                 new { courseId = courseViewModel.Course.Id, studentId = Model.StudentId }, FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()
-                                <tr>
-                                    <td>
-                                        @course.Date
-                                    </td>
-                                    <td>
-                                        @course.Title
-                                    </td>
-                                    <td>
-                                        @course.Tutor
-                                    </td>
-                                    <td>
-                                        @course.Cost
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Enrol" />
-                                    </td>
-                                </tr>
+                        <tr>
+                            <td>
+                                @courseViewModel.Course.Date
+                            </td>
+                            <td>
+                                @courseViewModel.Course.Title
+                            </td>
+                            <td>
+                                @courseViewModel.Course.Tutor
+                            </td>
+                            <td>
+                                @courseViewModel.Course.Cost
+                            </td>
+                            <td>
+                                @courseViewModel.Enrolled / @courseViewModel.Course.Capacity
+                            </td>
+                            <td>
+                                <input type="submit" value="Enrol" />
+                            </td>
+                        </tr>
                                 }
                             }
                         </tbody>
