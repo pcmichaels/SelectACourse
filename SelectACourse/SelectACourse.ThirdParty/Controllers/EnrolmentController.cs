@@ -20,9 +20,9 @@ namespace SelectACourse.ThirdParty.Controllers
         }
 
         [HttpPost]
-        public IActionResult Enrol([FromQuery]string courseId, [FromQuery]string studentId)
+        public async Task<IActionResult> Enrol([FromQuery]string courseId, [FromQuery]string studentId)
         {
-            if (_dataAccessService.Enrol(courseId, studentId))
+            if (await _dataAccessService.Enrol(courseId, studentId))
                 return Ok();
             else
                 return BadRequest();

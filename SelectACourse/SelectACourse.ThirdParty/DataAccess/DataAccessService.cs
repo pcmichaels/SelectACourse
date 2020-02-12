@@ -9,19 +9,21 @@ namespace SelectACourse.ThirdParty.DataAccess
 {
     public class DataAccessService
     {
-        private readonly CourseSelectDbContext _courseSelectDbContext;
+        private readonly CourseSelectDbContext _courseSelectDbContext;        
 
         public DataAccessService(CourseSelectDbContext courseSelectDbContext)
         {
-            _courseSelectDbContext = courseSelectDbContext;
+            _courseSelectDbContext = courseSelectDbContext;            
         }
 
         internal IEnumerable<Enrolment> GetEnrolments(string studentId) =>
             _courseSelectDbContext.EnrolmentEntities
                 .Where(a => a.StudentId == studentId);
 
-        internal bool Enrol(string courseId, string studentId)
+        public async Task<bool> Enrol(string courseId, string studentId)
         {
+            await Task.Delay(5000);
+
             int enrolmentCount = GetEnrolmentCountForCourse(courseId);
 
             var course = _courseSelectDbContext.CourseEntities
